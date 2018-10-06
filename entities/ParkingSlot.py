@@ -1,5 +1,5 @@
 class ParkingSlot:
-    def __init__(self, slot_number, car, is_empty=True):
+    def __init__(self, slot_number, is_empty=True, car=None):
         self.slot_number = slot_number
         self.is_empty = is_empty
         self.car = car
@@ -7,9 +7,11 @@ class ParkingSlot:
     def park_car(self, car):
         self.is_empty = False
         self.car = car
+        self.car.update_parking_slot_number(self.slot_number)
 
     def remove_car(self):
         self.is_empty = True
+        self.car = None
 
     def does_car_with_color_exists(self, color):
         if not self.is_empty:
