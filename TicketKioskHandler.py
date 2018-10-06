@@ -36,7 +36,7 @@ class TicketKioskHandler:
 
     def leave(self, slot_number):
         if slot_number < 1 or slot_number > self.number_of_parking_slots:
-            print "No such Parking Lot."
+            print "No such Parking slot."
             return False
         success = self.ticket_kiosk.leave_parking_slot(parking_slot_number=slot_number)
         if not success:
