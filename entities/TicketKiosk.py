@@ -13,10 +13,11 @@ class TicketKiosk:
         print "Created a parking lot with " + str(self.number_of_parking_slots) + " slots."
         return parking_slots
 
-    def get_nearest_slot_index_and_number(self):
+    def get_nearest_slot_index(self):
         for index, parking_slot in enumerate(self.parking_slots):
             if parking_slot.is_empty:
-                return index, parking_slot.slot_number
+                return index
+        return False
 
     def assign_parking_slot_to_car(self, car, slot_index):
         self.parking_slots[slot_index].park_car(car)
@@ -33,16 +34,38 @@ class TicketKiosk:
         for parking_slot in self.parking_slots:
             if not parking_slot.is_empty:
                 if parking_slot.does_car_with_color_exists(color):
-                    slot_numbers_for_cars_with_color.append(parking_slot.slot_number)
+                    slot_numbers_for_cars_with_color.append(str(parking_slot.slot_number))
         if len(slot_numbers_for_cars_with_color) > 0:
             return True, slot_numbers_for_cars_with_color
         else:
             return False, slot_numbers_for_cars_with_color
 
+    def get_registration_numbers_for_cars_with_color(self, color):
+        registration_numbers_for_cars_with_color = []
+        for parking_slot in self.parking_slots:
+            if not parking_slot.is_empty:
+                if parking_slot.does_car_with_color_exists(color):
+                    registration_numbers_for_cars_with_color.append(parking_slot.car.registration_number)
+        if len(registration_numbers_for_cars_with_color) > 0:
+            return True, registration_numbers_for_cars_with_color
+        else:
+            return False, registration_numbers_for_cars_with_color
+
     def leave_parking_slot(self, parking_slot_number):
+        if self.parking_slots[parking_slot_number-1].is_empty:
+            return False
         self.parking_slots[parking_slot_number-1].remove_car()
+        return True
 
     def status(self):
+        all_empty = True
+        for parking_slot in self.parking_slots:
+            if not parking_slot.is_empty:
+                all_empty = False
+
+        if all_empty:
+            print "All parking slots are empty."
+
         print "No" + '\t' + "Registration" + '\t' + "Slot No." + '\t' + "Color" + '\n'
         for i, parking_slot in enumerate(self.parking_slots):
             if not parking_slot.is_empty:
