@@ -20,10 +20,11 @@ class TicketKioskHandler:
 
         car = Car(color=color, registration_number=registration_number)
         slot_index = self.ticket_kiosk.get_nearest_slot_index()
-        if not slot_index:
+        if slot_index == -1:
             print "Sorry, Parking Lot is Full."
         else:
             self.ticket_kiosk.assign_parking_slot_to_car(car, slot_index)
+            print "Allocated slot number: " + str(slot_index+1)
 
     def leave(self, slot_number):
         if slot_number < 1 or slot_number > self.number_of_parking_slots:

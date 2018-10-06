@@ -17,7 +17,7 @@ class TicketKiosk:
         for index, parking_slot in enumerate(self.parking_slots):
             if parking_slot.is_empty:
                 return index
-        return False
+        return -1
 
     def assign_parking_slot_to_car(self, car, slot_index):
         self.parking_slots[slot_index].park_car(car)
@@ -69,4 +69,4 @@ class TicketKiosk:
         print "No" + '\t' + "Registration" + '\t' + "Slot No." + '\t' + "Color" + '\n'
         for i, parking_slot in enumerate(self.parking_slots):
             if not parking_slot.is_empty:
-                print str(i+1) + '\t' + parking_slot.get_car().registration_number + '\t' + parking_slot.slot_number + '\t' + parking_slot.get_car().color + '\n'
+                print str(i+1) + '\t' + str(parking_slot.get_car().registration_number) + '\t' + str(parking_slot.slot_number) + '\t' + parking_slot.get_car().color + '\n'

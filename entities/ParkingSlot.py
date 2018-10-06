@@ -7,7 +7,6 @@ class ParkingSlot:
     def park_car(self, car):
         self.is_empty = False
         self.car = car
-        self.car.update_parking_slot_number(self.slot_number)
 
     def remove_car(self):
         self.is_empty = True
