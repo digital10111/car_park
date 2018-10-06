@@ -25,6 +25,7 @@ class TicketKioskHandler:
         else:
             self.ticket_kiosk.assign_parking_slot_to_car(car, slot_index)
             print "Allocated slot number: " + str(slot_index+1)
+        return slot_index + 1
 
     def leave(self, slot_number):
         if slot_number < 1 or slot_number > self.number_of_parking_slots:
@@ -34,6 +35,7 @@ class TicketKioskHandler:
             print "Parking Slot is already empty."
         else:
             print "Parking Slot " + str(slot_number) + " is empty."
+        return success
 
     def parking_lot_status(self):
         self.ticket_kiosk.status()
