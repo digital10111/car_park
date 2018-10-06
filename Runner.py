@@ -12,15 +12,18 @@ def main():
     valid.add("slot_numbers_for_cars_with_color")
     valid.add("slot_number_for_registration_number")
 
-    create_input = raw_input()
-    splits = create_input.split(" ")
+    while True:
+        create_input = raw_input()
+        splits = create_input.split(" ")
 
-    create_command = splits[0]
+        create_command = splits[0]
 
-    if create_command != "create_parking_lot":
-        print "First command has to be create_parking_lot."
-
-    ticket_kiosk_handler = TicketKioskHandler(int(splits[1]))
+        if create_command != "create_parking_lot":
+            print "First command has to be create_parking_lot. Please Try Again."
+            continue
+        else:
+            ticket_kiosk_handler = TicketKioskHandler(int(splits[1]))
+            break
 
     while True:
         try:
