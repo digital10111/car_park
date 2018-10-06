@@ -44,13 +44,16 @@ class TicketKioskHandler:
         is_car_there, parking_slot_number = self.ticket_kiosk.get_slot_number_for_registration_number(registration_number)
         if is_car_there:
             print parking_slot_number
+            return parking_slot_number
         else:
             print "No such car."
+            return False
 
     def get_slot_numbers_for_cars_with_color(self, color):
         are_there_cars, slot_numbers_for_cars_with_color = self.ticket_kiosk.get_slot_numbers_for_cars_with_color(color)
         if are_there_cars:
             print ",".join(slot_numbers_for_cars_with_color)
+            return slot_numbers_for_cars_with_color
         else:
             print "No cars with this color."
 
@@ -58,8 +61,10 @@ class TicketKioskHandler:
         are_there_cars, registration_numbers_for_cars_with_color = self.ticket_kiosk.get_registration_numbers_for_cars_with_color(color)
         if are_there_cars:
             print ",".join(registration_numbers_for_cars_with_color)
+            return registration_numbers_for_cars_with_color
         else:
             print "No cars with this color."
+            return False
 
 
 
