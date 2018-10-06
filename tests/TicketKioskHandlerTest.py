@@ -122,6 +122,19 @@ class TicketKioskHandlerTest(unittest.TestCase):
         assert "Reg5" not in registration_numbers_for_cars_with_color_red
         assert "Reg6" in registration_numbers_for_cars_with_color_red
 
+        self.ticket_kiosk_handler.leave(1)
+        self.ticket_kiosk_handler.leave(3)
+
+        self.ticket_kiosk_handler.park_car_with_details("RegLat", "White")
+        registration_numbers_for_cars_with_color_white = self.ticket_kiosk_handler.get_registration_numbers_for_cars_with_color("White")
+        assert "Reg1" not in registration_numbers_for_cars_with_color_white
+        assert "Reg2" not in registration_numbers_for_cars_with_color_white
+        assert "Reg3" not in registration_numbers_for_cars_with_color_white
+        assert "Reg4" not in registration_numbers_for_cars_with_color_white
+        assert "Reg5" in registration_numbers_for_cars_with_color_white
+        assert "Reg6" not in registration_numbers_for_cars_with_color_white
+        assert "RegLat" in registration_numbers_for_cars_with_color_white
+
 
 if __name__ == "__main__":
     unittest.main()
