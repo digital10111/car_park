@@ -22,6 +22,9 @@ def main():
             print "First command has to be create_parking_lot. Please Try Again."
             continue
         else:
+            if len(splits) < 2:
+                print "Specify Number of slot too."
+                continue
             ticket_kiosk_handler = TicketKioskHandler(int(splits[1]))
             break
 
@@ -62,6 +65,7 @@ def main():
 
         except Exception:
             print(traceback.format_exc())
+            continue
 
 
 if __name__ == '__main__':

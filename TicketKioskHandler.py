@@ -1,5 +1,6 @@
 from entities.Car import Car
 from entities.TicketKiosk import TicketKiosk
+from colour import Color
 
 
 class TicketKioskHandler:
@@ -18,6 +19,12 @@ class TicketKioskHandler:
         if len(color) == 0:
             raise RuntimeError("No color provided.")
 
+        try:
+            Color(color)
+        except ValueError:
+            print color + " is not a recognised color."
+            return
+
         car = Car(color=color, registration_number=registration_number)
         slot_index = self.ticket_kiosk.get_nearest_slot_index()
         if slot_index == -1:
@@ -30,6 +37,7 @@ class TicketKioskHandler:
     def leave(self, slot_number):
         if slot_number < 1 or slot_number > self.number_of_parking_slots:
             print "No such Parking Lot."
+            return False
         success = self.ticket_kiosk.leave_parking_slot(parking_slot_number=slot_number)
         if not success:
             print "Parking Slot is already empty."
