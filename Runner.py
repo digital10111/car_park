@@ -36,7 +36,7 @@ def main():
             if splits[0] not in valid:
                 print "Not a valid in put."
                 if splits[0] == "create_parking_lot":
-                    print "Already created."
+                    print "Parking Lot already created."
                     continue
                 continue
 
