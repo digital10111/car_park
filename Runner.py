@@ -33,7 +33,7 @@ def main():
             inp = raw_input()
             splits = inp.split(" ")
 
-            if splits[0] not in valid:
+            if splits[0].lower() not in valid:
                 print "Not a valid in put."
                 if splits[0] == "create_parking_lot":
                     print "Parking Lot already created."
