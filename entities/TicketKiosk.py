@@ -62,6 +62,7 @@ class TicketKiosk:
         for parking_slot in self.parking_slots:
             if not parking_slot.is_empty:
                 all_empty = False
+                break
 
         if all_empty:
             print "All parking slots are empty."
